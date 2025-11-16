@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Товарная накладная — Enter Engineering</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img id="brandLogo" src="logo.png" alt="Enter Engineering" />
+      <h1>Генератор товарной накладной</h1>
+      <p class="muted">Товарная накладная на внутреннее перемещение — Enter Engineering</p>
+    </header>
+
+    <main class="card">
+      <form id="mainForm" autocomplete="off">
+        <div class="grid">
+          <div class="field"><label>№ накладной</label><input id="invNumber" readonly></div>
+          <div class="field"><label>Дата</label><input id="invDate" type="text" readonly></div>
+          <div class="field wide"><label>Организация</label><input id="organization" value="Enter Engineering Pte.Ltd. - МОФ-3 Алмалык"></div>
+
+          <div class="field"><label>Со склада</label><input id="fromWarehouse"></div>
+          <div class="field"><label>На склад</label><input id="toWarehouse"></div>
+          <div class="field"><label>Через кого</label><input id="viaPerson"></div>
+
+          <div class="field"><label>Тел. водителя</label><input id="driverPhone"></div>
+          <div class="field"><label>Авто</label><input id="vehicle"></div>
+          <div class="field wide"><label>На основании</label><input id="basis"></div>
+
+          <div class="field"><label>Ответственный</label><input id="responsible"></div>
+          <div class="field"><label>Отпустил</label><input id="releasedBy"></div>
+          <div class="field"><label>Получил к перевозке</label><input id="receivedForTransport"></div>
+
+          <div class="field"><label>Получил</label><input id="receivedBy"></div>
+          <div class="field"><label>Оператор</label><input id="operator"></div>
+          <div class="field"><label>Кладовщик</label><input id="storekeeper"></div>
+        </div>
+
+        <h3>Товары</h3>
+        <div class="items-card">
+          <table id="itemsTable">
+            <thead><tr><th>#</th><th>Код</th><th>Наименование товара</th><th>Ед. изм.</th><th>Кол-во</th><th>Инвойс</th><th>Примечание</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+
+          <div class="add-row">
+            <input id="itemCode" placeholder="77-001602868">
+            <input id="itemName" placeholder="Наименование товара">
+            <input id="itemUom" placeholder="шт / тн" style="width:90px">
+            <input id="itemQty" type="number" placeholder="Кол-во" style="width:120px">
+            <input id="itemInv" placeholder="Инвойс" style="width:120px">
+            <input id="itemNote" placeholder="Примечание" style="width:160px">
+            <button type="button" id="addItemBtn" class="primary">Добавить</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="generatePdf" class="primary">Сформировать PDF (скачать)</button>
+          <button type="button" id="printBtn" class="secondary">Печать</button>
+          <button type="button" id="saveRecord" class="ghost">Сохранить в историю</button>
+          <button type="button" id="loadHistory" class="ghost">Показать историю</button>
+          <button type="button" id="clearAll" class="ghost">Очистить</button>
+        </div>
+      </form>
+
+      <div id="historyPanel" class="history-panel"></div>
+
+      <div id="printContainer" class="print-container" hidden></div>
+
+    </main>
+    <footer class="footer muted">Данные сохраняются в браузере (localStorage). Для совместного доступа экспортируйте PDF.</footer>
+  </div>
+
+  <!-- libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
